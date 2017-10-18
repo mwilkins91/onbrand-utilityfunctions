@@ -8,7 +8,7 @@
  * @param {function} [noTagFn=function() {}] --> The function to run if a tile does NOT have the desired tag.
  * @returns {boolean} --> returns true if the tile had the tag, or false if it didn't. 
  */
-const doIfTag = function(
+exports.doIfTag = function(
 	filterBy,
 	yesTagFn = function() {},
 	noTagFn = function() {}
@@ -52,7 +52,7 @@ const doIfTag = function(
  * 
  * @returns {function} --> The function that updates on page change.
  */
-const fixShareWidgetImproved = function() {
+exports.fixShareWidgetImproved = function() {
 	//rip out share window, put inside of relative div (in the same place)
 	//create div to house elements
 	$('.right-side-btns').prepend(
@@ -99,7 +99,7 @@ const fixShareWidgetImproved = function() {
  * This function is to be called on scroll, and will keep the block CTAs within the bounds of the article they are
  * supposed to be blocking (preventing them from overlapping the injected header and footer).
  */
-var blockCtaFix = function() {
+exports.blockCtaFix = function() {
 	var $blockCta = $('.block-cta:not(.embed-cta)');
 
 	if ($blockCta.length && !$('.level-three .block-cta').length) {
@@ -144,7 +144,7 @@ var blockCtaFix = function() {
  * When called on scroll, thi function will fade out the next-item-flyout before it can overlap with the
  * injected-footer
  */
-const fadeOutItem = () => {
+exports.fadeOutItem = () => {
 	if ($('body').hasClass('single-page')) {
 		let footerHeight = $('footer').height();
 		let pageHeight = document.body.scrollHeight - $(window).height();
