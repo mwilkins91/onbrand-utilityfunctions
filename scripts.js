@@ -6,7 +6,7 @@
  * @param {string} filterBy --> The tag to look for
  * @param {function} [yesTagFn=function() {}] --> The function to run if a tile has the desired tag.
  * @param {function} [noTagFn=function() {}] --> The function to run if a tile does NOT have the desired tag.
- * @returns {boolean} --> returns true if the tile had the tag, or false if it didn't. 
+ * @returns {boolean} --> returns true if the front end tags are enabled, otherwise returns false and logs an error.
  */
 exports.doIfTag = function(
 	filterBy,
@@ -34,7 +34,6 @@ exports.doIfTag = function(
 					}
 				});
 			}
-
 			//Do this if the tile has the tag
 			if (hasTag) {
 				yesTagFn.call(this);
@@ -42,15 +41,16 @@ exports.doIfTag = function(
 				return true;
 			} else {
 				noTagFn.call(this);
-				return false;
+				return true;
 			}
 		});
 	} else {
 		console.error('-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-');
 		console.error(
-			'  Onbrander: You called doIfTag, but front end tags are enabled !'
+			'  Onbrander: You called doIfTag, but front end tags are NOT enabled !'
 		);
 		console.error('-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-');
+		return false;
 	}
 };
 
