@@ -110,10 +110,6 @@ exports.fixShareWidgetImproved = function() {
 		left: -465% !important;
 		top: 45px !important;
 		}
-		.listing-page .share-hub,
-		.listing-page .share-item {
-		left: -586% !important;
-		}
 		}
 	</style>`);
 	//rip out share window, put inside of relative div (in the same place)
