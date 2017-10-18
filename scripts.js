@@ -136,7 +136,10 @@ exports.fixShareWidgetImproved = function() {
 			$('.right-side-btns .share-hub').remove();
 			$('.right-side-btns .share-container').remove();
 			$('.meta-inner .share-container').insertAfter('.insertFlag--share');
-		} else if ($('.share-item.type-collection').length) {
+		} else if (
+			$('.share-item.type-collection').length &&
+			!$('body').hasClass('hub-page')
+		) {
 			$('.right-side-btns .share-hub').remove();
 			$('.right-side-btns .share-container').remove();
 			$('#hubs-container .page-aligner>.share-container').insertAfter(
