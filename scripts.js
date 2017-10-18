@@ -53,7 +53,7 @@ exports.doIfTag = function(
  * @returns {function} --> The function that updates on page change.
  */
 exports.fixShareWidgetImproved = function() {
-	$('head').append(`<style>
+	$('head').append(`<style id="shareWidgetFix">
 	.relativeDiv {
 		position: relative;
 		float: right;
@@ -222,4 +222,30 @@ exports.fadeOutItem = () => {
 			$('.item-next-prev').fadeIn('fast');
 		}
 	}
+};
+
+/**
+ * Simply adds the css required to have tile descriptions slide up on hover
+ */
+exports.descriptionSlideUp = function() {
+	$('head').append(`<style id="descriptionsSlideUp">
+	/*-- Tile Description Pop-up Hover --*/
+	#collection-items .tile .description {
+		-webkit-transition: all 0.4s ease-out;
+		transition: all 0.4s ease-out;
+	}
+	#collection-items .tile .description .long-h3 {
+		display: block !important;
+	}
+	
+	#collection-items .tile:hover .description {
+		height: 100%;
+		-webkit-transition: all 0.3s ease-out;
+		transition: all 0.3s ease-out;
+	}
+	
+	#collection-items .tile .share-single {
+		display: none;
+	}
+	</style>`);
 };
