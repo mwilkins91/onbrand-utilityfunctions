@@ -53,6 +53,69 @@ exports.doIfTag = function(
  * @returns {function} --> The function that updates on page change.
  */
 exports.fixShareWidgetImproved = function() {
+	$('head').append(`<style>
+	.relativeDiv {
+		position: relative;
+		float: right;
+		}
+		
+		.relativeDiv.relativeDiv--search {
+		float: left;
+		}
+		
+		.relativeDiv--share:hover .share-hub {
+		display: block;
+		}
+		
+		.share-hub,
+		.share-item {
+		margin: auto;
+		}
+		
+		.search-drop-down {
+		position: absolute;
+		}
+		
+		@media all and (min-width: 860px) {
+		.share-hub,
+		.share-item {
+		right: auto;
+		position: absolute;
+		left: -450% !important;
+		top: 51px !important;
+		}
+		.search-drop-down {
+		right: 0;
+		position: absolute;
+		left: -4% !important;
+		top: 55px !important;
+		}
+		}
+		
+		@media all and (max-width: 860px) {
+		.share-hub,
+		.share-item {
+		right: auto;
+		position: absolute;
+		left: -576% !important;
+		top: 45px !important;
+		}
+		}
+		
+		@media all and (max-width: 720px) {
+		.share-hub,
+		.share-item {
+		right: auto;
+		position: absolute;
+		left: -465% !important;
+		top: 45px !important;
+		}
+		.listing-page .share-hub,
+		.listing-page .share-item {
+		left: -586% !important;
+		}
+		}
+	</style>`);
 	//rip out share window, put inside of relative div (in the same place)
 	//create div to house elements
 	$('.right-side-btns').prepend(
