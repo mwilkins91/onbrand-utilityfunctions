@@ -165,6 +165,12 @@ exports.fixShareWidgetImproved = function() {
 			}
 		}
 	};
+	// Make sure social still opens in popup
+	const links = document.querySelectorAll('#share-main-hub li a');
+  	links.forEach(link => link.addEventListener('click', function(e) {
+    	e.preventDefault();
+    	window.open(this.href, 'windowName', 'width=540, height=433, left=24, top=24, scrollbars, resizable');
+    }));
 	Hubs.Events.on('load', update);
 	Hubs.Events.on('pageChange', update);
 	return update;
