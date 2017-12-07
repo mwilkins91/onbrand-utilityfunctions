@@ -354,3 +354,18 @@ exports.devMode = function(devOptions) {
 		});
 	}
 };
+
+/**
+ * Recursivley remove all the standard classes from our topnav clone,
+ * add some handly classes in the prcoess. Called as the callback to
+ * a jQuery .each(). EX $(parent).children().each(removeClasses)
+ *
+ * @param {index} i
+ * @param {element} el
+ */
+exports.removeClasses = removeClasses = function(i, el) {
+	$(el)
+		.attr('class', '')
+		.children()
+		.each(removeClasses);
+};
