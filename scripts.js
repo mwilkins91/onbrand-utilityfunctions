@@ -363,7 +363,7 @@ exports.devMode = function(devOptions) {
  * @param {index} i
  * @param {element} el
  */
-exports.removeClasses = removeClasses = function(i, el) {
+exports.removeClasses = function removeClasses(i, el) {
 	$(el)
 		.attr('class', '')
 		.children()
