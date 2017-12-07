@@ -2,7 +2,7 @@
  * Loop over each tile, and if the tag specified (1st param) is present, execute yesTagFn (2nd param)
  * if the tag is not present, execute noTagFn (3rd param). In both callbacks, **this** reffers to the tile currently being
  * checked
- * 
+ *
  * @param {string} filterBy --> The tag to look for
  * @param {function} [yesTagFn=function() {}] --> The function to run if a tile has the desired tag.
  * @param {function} [noTagFn=function() {}] --> The function to run if a tile does NOT have the desired tag.
@@ -56,8 +56,8 @@ exports.doIfTag = function(
 
 /**
  * Take the hub share window, rip it out, and make our own. On page change, replace our new share window with the appropriate one
- * for that page. Applies event listeners for load and page change, simply call near the begining of your code. 
- * 
+ * for that page. Applies event listeners for load and page change, simply call near the begining of your code.
+ *
  * @returns {function} --> The function that updates on page change.
  */
 exports.fixShareWidgetImproved = function() {
@@ -167,10 +167,16 @@ exports.fixShareWidgetImproved = function() {
 	};
 	// Make sure social still opens in popup
 	const links = document.querySelectorAll('#share-main-hub li a');
-  	links.forEach(link => link.addEventListener('click', function(e) {
-    	e.preventDefault();
-    	window.open(this.href, 'windowName', 'width=540, height=433, left=24, top=24, scrollbars, resizable');
-    }));
+	links.forEach(link =>
+		link.addEventListener('click', function(e) {
+			e.preventDefault();
+			window.open(
+				this.href,
+				'windowName',
+				'width=540, height=433, left=24, top=24, scrollbars, resizable'
+			);
+		})
+	);
 	Hubs.Events.on('load', update);
 	Hubs.Events.on('pageChange', update);
 	return update;
@@ -273,10 +279,7 @@ exports.devMode = function(devOptions) {
 	console.warn(
 		"   Hey Onbrander, Just letting you know that we're in dev mode!"
 	);
-	console.warn(
-		'   You have access to the following functions:',
-		onbrandFunctions
-	);
+	console.warn('   You have access to the following functions:', exports);
 	console.warn('   More info available here: http://cihost.uberflip.com/docs/');
 	console.warn(
 		'-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='
@@ -284,18 +287,18 @@ exports.devMode = function(devOptions) {
 	console.log(' ');
 	console.log(' ');
 
-	/** 
-   *  Utility Functions
-   */
+	/**
+	 *  Utility Functions
+	 */
 	const _internalLink = function(e) {
 		e.preventDefault();
 		Hubs.changePage(e.target.href);
 	};
 
 	/**
-   * 
-   * @param {string} url - the url to replace with a relative path
-   */
+	 *
+	 * @param {string} url - the url to replace with a relative path
+	 */
 	const _relativeLinks = function(url) {
 		//We need relative links for local dev, so we regex for the url as the href
 		var matchThis = new RegExp(
@@ -321,9 +324,9 @@ exports.devMode = function(devOptions) {
 				}
 			});
 	};
-	/** 
-   *  Local Development Events
-   */
+	/**
+	 *  Local Development Events
+	 */
 
 	if (!production) {
 		//run right away to catch any early clickers out there...
