@@ -6,44 +6,50 @@
  * @param {string} filterBy --> The tag to look for
  * @param {function} [yesTagFn=function() {}] --> The function to run if a tile has the desired tag.
  * @param {function} [noTagFn=function() {}] --> The function to run if a tile does NOT have the desired tag.
+ * @param {string} OPTIONAL: A css class to ignore, and to add after the tile has been processed.
  * @returns {boolean} --> returns true if the front end tags are enabled, otherwise returns false and logs an error.
  */
 exports.doIfTag = function(
 	filterBy,
 	yesTagFn = function() {},
-	noTagFn = function() {}
+	noTagFn = function() {},
+	not = ''
 ) {
 	if ($('body').hasClass('include_fe_item_tags')) {
-		$('.tile').each(function(i, el) {
-			//Get the tags for this tile.
-			var allTagsString = el.dataset.tags;
+		$('.tile')
+			.not(not)
+			.each(function(i, el) {
+				//Get the tags for this tile.
+				var allTagsString = el.dataset.tags;
 
-			//assume it doesn't have the tag we want
-			var hasTag = false;
+				//assume it doesn't have the tag we want
+				var hasTag = false;
 
-			//If there is any tags to even check...
-			if (allTagsString) {
-				//split the tags into an array
-				var allTagsArray = allTagsString.split(',');
+				//If there is any tags to even check...
+				if (allTagsString) {
+					//split the tags into an array
+					var allTagsArray = allTagsString.split(',');
 
-				//loop over the array
-				allTagsArray.forEach(function(tag) {
-					//if the tag matches what we're looking for, change hasTag to true
-					if (tag.toLowerCase() === filterBy.toLowerCase()) {
-						hasTag = true;
-					}
-				});
-			}
-			//Do this if the tile has the tag
-			if (hasTag) {
-				yesTagFn.call(this);
-				//Do this if the tile doesn't...
-				return true;
-			} else {
-				noTagFn.call(this);
-				return true;
-			}
-		});
+					//loop over the array
+					allTagsArray.forEach(function(tag) {
+						//if the tag matches what we're looking for, change hasTag to true
+						if (tag.toLowerCase() === filterBy.toLowerCase()) {
+							hasTag = true;
+						}
+					});
+				}
+				//Do this if the tile has the tag
+				if (hasTag) {
+					yesTagFn.call(this);
+					//Do this if the tile doesn't...
+					$(this).addClass(not);
+					return true;
+				} else {
+					noTagFn.call(this);
+					$(this).addClass(not);
+					return true;
+				}
+			});
 	} else {
 		console.error('-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-');
 		console.error(
@@ -368,4 +374,70 @@ exports.removeClasses = function removeClasses(i, el) {
 		.attr('class', '')
 		.children()
 		.each(removeClasses);
+};
+
+/**
+ *
+ * @param {Regular Expression} What tag you're looking for
+ * @param {function} OPTIONAL: A function to execute if the tile has the tag, THIS = the tile inside the function.
+ * @param {function} OPTIONAL: A function to execute if the tile DOES NOT have the tag, THIS = the tile inside the function.
+ * @param {string} OPTIONAL: A css class to ignore, and to add after the tile has been processed.
+ */
+exports.doIfTagRegex = function doIfTagRegex(
+	filterBy,
+	yesTagFn = function() {},
+	noTagFn = function() {},
+	not = ''
+) {
+	if (!(filterBy instanceof RegExp)) {
+		console.error(
+			`${
+				filterBy
+			} is not a valid regular expression! Please use new RegExp() to generate one!`
+		);
+		return false;
+	} else if ($('body').hasClass('include_fe_item_tags')) {
+		$('.tile')
+			.not(not)
+			.each(function(i, el) {
+				//Get the tags for this tile.
+				var allTagsString = el.dataset.tags;
+
+				//assume it doesn't have the tag we want
+				var hasTag = false;
+				var theTag;
+				//If there is any tags to even check...
+				if (allTagsString) {
+					//split the tags into an array
+					var allTagsArray = allTagsString.split(',');
+
+					//loop over the array
+					allTagsArray.forEach(function(tag) {
+						//if the tag matches what we're looking for, change hasTag to true
+						if (filterBy.test(tag)) {
+							hasTag = true;
+							theTag = tag;
+						}
+					});
+				}
+				//Do this if the tile has the tag
+				if (hasTag) {
+					yesTagFn.call(this, theTag);
+					//Do this if the tile doesn't...
+					$(this).addClass(not);
+					return true;
+				} else {
+					noTagFn.call(this);
+					$(this).addClass(not);
+					return true;
+				}
+			});
+	} else {
+		console.error('-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-');
+		console.error(
+			'  Onbrander: You called doIfTag, but front end tags are NOT enabled !'
+		);
+		console.error('-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-');
+		return false;
+	}
 };
