@@ -234,7 +234,7 @@ exports.blockCtaFix = function() {
 };
 
 /**
- * When called on scroll, thi function will fade out the next-item-flyout before it can overlap with the
+ * When called on scroll, this function will fade out the next-item-flyout before it can overlap with the
  * injected-footer
  */
 exports.fadeOutItem = () => {
