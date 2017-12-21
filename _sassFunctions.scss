@@ -79,3 +79,24 @@
     clear: both;
   }
 }
+
+// Custom Color Top Nav
+
+@mixin brandColorTopNav($color1, $color2) {
+    background-color: $color1;
+    .left-nav.desktop {
+        li a,
+        li ul li a {
+            color: $color2;
+            &:hover {
+                color: $color2;
+            }
+        }
+        li.hover.has-children a {
+            color: $color1;
+        }
+        .has-children ul li a {
+            color: $color1;
+        }
+    }
+}
