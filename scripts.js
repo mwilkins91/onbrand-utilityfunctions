@@ -391,9 +391,7 @@ exports.doIfTagRegex = function doIfTagRegex(
 ) {
 	if (!(filterBy instanceof RegExp)) {
 		console.error(
-			`${
-				filterBy
-			} is not a valid regular expression! Please use new RegExp() to generate one!`
+			`${filterBy} is not a valid regular expression! Please use new RegExp() to generate one!`
 		);
 		return false;
 	} else if ($('body').hasClass('include_fe_item_tags')) {
@@ -439,5 +437,19 @@ exports.doIfTagRegex = function doIfTagRegex(
 		);
 		console.error('-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-');
 		return false;
+	}
+};
+
+exports.noQueryStringSafeguard = function() {
+	if (
+		/localhost:3000/gi.test(window.location.host) &&
+		!(
+			/\?onbrand/gi.test(window.location.href) ||
+			/\&onbrand/gi.test(window.location.href)
+		)
+	) {
+		console.error(
+			"It looks like you are in dev mode, but you're missing the onbrand query string."
+		);
 	}
 };
