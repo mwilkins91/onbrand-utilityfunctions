@@ -453,3 +453,19 @@ exports.noQueryStringSafeguard = function() {
 		);
 	}
 };
+
+/**
+ * Returns the stream class for that page.
+ *
+ * @returns {String} 'stream-xxxxx' or false, if the page has no stream.
+ */
+exports.getStreamClass = function() {
+	const classes = $('body').attr('class');
+	const classArray = classes.split(' ');
+	let streamClass;
+	classArray.forEach(
+		currentClass =>
+			/stream-/gi.test(currentClass) ? (streamClass = currentClass) : null
+	);
+	return streamClass ? streamClass : false;
+};
