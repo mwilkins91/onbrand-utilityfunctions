@@ -469,3 +469,19 @@ exports.getStreamClass = function() {
 	);
 	return streamClass ? streamClass : false;
 };
+
+exports.helpfulClasses = function() {
+	function detectAndAddClass() {
+		const $class = $('#page-type-identifier').attr('data-item-type');
+		if ($class) {
+			$('body').addClass($class);
+		}
+
+		if (!$('body').hasClass('webpackBuild')) {
+			$('body').addClass('webpackBuild');
+		}
+	}
+
+	Hubs.Events.on('load', detectAndAddClass);
+	Hubs.Events.on('pageChange'.detectAndAddClass);
+};
