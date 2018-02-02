@@ -483,5 +483,5 @@ exports.helpfulClasses = function() {
 	}
 
 	Hubs.Events.on('load', detectAndAddClass);
-	Hubs.Events.on('pageChange'.detectAndAddClass);
+	Hubs.Events.on('pageChange', detectAndAddClass);
 };
