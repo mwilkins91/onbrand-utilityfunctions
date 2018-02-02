@@ -470,11 +470,29 @@ exports.getStreamClass = function() {
 	return streamClass ? streamClass : false;
 };
 
+/**
+ * Adds helpful body classes based on content type to make styling easier.
+ */
 exports.helpfulClasses = function() {
+	//An array to keep track of what content types are used (ensures we are dynamic, no hardcoded types)
+	const typeArray = [];
+
+	//the function to run on page change/load
+
+	/**
+	 * Removes all known type classes from the body, then adds whichever
+	 * is relevent to that page. Checks to see if that class is known, and if
+	 * not, adds it to the array.
+	 */
 	function detectAndAddClass() {
+		typeArray.forEach(type => $('body').removeClass(type));
+
 		const $class = $('#page-type-identifier').attr('data-item-type');
 		if ($class) {
 			$('body').addClass($class);
+			if (typeArray.indexOf($class) < 0) {
+				typeArray.push($class);
+			}
 		}
 
 		if (!$('body').hasClass('webpackBuild')) {
@@ -482,6 +500,7 @@ exports.helpfulClasses = function() {
 		}
 	}
 
+	//Event listeners
 	Hubs.Events.on('load', detectAndAddClass);
 	Hubs.Events.on('pageChange', detectAndAddClass);
 };
