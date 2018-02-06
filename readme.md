@@ -1,122 +1,33 @@
-### onbrandutilityfunctions
+# The Onbrand Utility Function Library
 
-`0.1.6`
+## 1. What is this, and what is it for?
+This package is a collection of usefull reusable functions for building [Uberflip](https://www.uberflip.com/) hubs. It allows for quick, stable, bug free implementation of various features, and works in combination with the [Onbrand framework](https://www.npmjs.com/package/onbrand-project-generator) to provide high-quality custom builds for clients. 
 
-*   [doIfTag](#doiftag)
-*   [fixShareWidgetImproved](#fixsharewidgetimproved)
-*   [blockCtaFix](#blockctafix)
-*   [fadeOutItem](#fadeoutitem)
-*   [descriptionSlideUp](#descriptionslideup)
-*   [removeClasses](#removeclasses)
-*   [doIfTagRegex](#doiftagregex)
-*   [_internalLink](#_internallink)
-*   [_relativeLinks](#_relativelinks)
-*   [on](#on)
+The supporting documentation for the functions contained in this library can be found here: http://cihost.uberflip.com/docs/
 
-[Need help reading this?](http://documentation.js.org/reading-documentation.html)
+## 2. How do I use it?
+This library depends on jQuery. At the time of writing this, jQuery is included in all Uberflip Hubs, and so this module should be usable without importing jQuery separately. 
 
-### doIfTag
+Typically, this library would be automatically included when generating a new onbrand project. The library is to be installed via npm `npm install onbrandutilityfunctions`, then refferenced in your scripts via import. Here is a simple example:
 
-Loop over each tile, and if the tag specified (1st param) is present, execute yesTagFn (2nd param) if the tag is not present, execute noTagFn (3rd param). In both callbacks, **this** reffers to the tile currently being checked
+    import onbrandutilityfunctions from 'onbrandutilityfunctions';
+    onbrandutilityfunctions.doIfTag('someTag', someFunc);
 
-doIfTag(filterBy: [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), yesTagFn: [function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function), noTagFn: [function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function), not: any, OPTIONAL: [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)): [boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+These functions should be run through babel.js to ensure maximum compatibility. 
 
-Parameters
+## 3. Some Examples:
 
-filterBy `([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String))` --\> The tag to look for
+I want to execute code on every tile that has the tag `blog`
 
-yesTagFn ``([function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function) = `function(){}`)`` --\> The function to run if a tile has the desired tag.
+    Hubs.Events.on('load', function(){
+        onbrandutilityfunctions.doIfTag('blog', function(){
+	    	$(this).find('a.view').text('I changed the label!');
+	    })
+    })
 
-noTagFn ``([function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function) = `function(){}`)`` --\> The function to run if a tile does NOT have the desired tag.
 
-not ``(any = `''`)``
+I want to fade out the next item flyout before it overlaps the footer I have added to the page:
 
-OPTIONAL `([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String))` : A css class to ignore, and to add after the tile has been processed.
-
-Returns
-
-`[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)`: --\> returns true if the front end tags are enabled, otherwise returns false and logs an error.
-
-### fixShareWidgetImproved
-
-Take the hub share window, rip it out, and make our own. On page change, replace our new share window with the appropriate one for that page. Applies event listeners for load and page change, simply call near the begining of your code.
-
-fixShareWidgetImproved(): [function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)
-
-Returns
-
-`[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)`: --\> The function that updates on page change.
-
-### blockCtaFix
-
-This function is to be called on scroll, and will keep the block CTAs within the bounds of the article they are supposed to be blocking (preventing them from overlapping the injected header and footer).
-
-blockCtaFix()
-
-### fadeOutItem
-
-When called on scroll, this function will fade out the next-item-flyout before it can overlap with the injected-footer
-
-fadeOutItem()
-
-### descriptionSlideUp
-
-Simply adds the css required to have tile descriptions slide up on hover
-
-descriptionSlideUp()
-
-### removeClasses
-
-Recursivley remove all the standard classes from our topnav clone, add some handly classes in the prcoess. Called as the callback to a jQuery .each(). EX $(parent).children().each(removeClasses)
-
-removeClasses(i: index, el: [element](https://developer.mozilla.org/en-US/docs/Web/API/Element))
-
-Parameters
-
-i `(index)`
-
-el `([element](https://developer.mozilla.org/en-US/docs/Web/API/Element))`
-
-### doIfTagRegex
-
-doIfTagRegex(filterBy: any, yesTagFn: any, noTagFn: any, not: any, OPTIONAL: [function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function), OPTIONAL: [function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function), OPTIONAL: [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String))
-
-Parameters
-
-filterBy `(any)`
-
-yesTagFn ``(any = `function(){}`)``
-
-noTagFn ``(any = `function(){}`)``
-
-not ``(any = `''`)``
-
-OPTIONAL `([function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function))` : A function to execute if the tile has the tag, THIS = the tile inside the function.
-
-OPTIONAL `([function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function))` : A function to execute if the tile DOES NOT have the tag, THIS = the tile inside the function.
-
-OPTIONAL `([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String))` : A css class to ignore, and to add after the tile has been processed.
-
-### _internalLink
-
-Utility Functions
-
-_internalLink
-
-Parameters
-
-e `(any)`
-
-### _relativeLinks
-
-_relativeLinks
-
-Parameters
-
-url `([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String))` the url to replace with a relative path
-
-### on
-
-Local Development Events
-
-on
+    Hubs.Events.on('scroll', function(){
+        onbrandutilityfunctions.fadeOutItem();
+    })

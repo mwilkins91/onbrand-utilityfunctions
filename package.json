@@ -4,7 +4,8 @@
   "description": "A collection of useful reusable functions for working with uberflip hubs, to be included on an as-needed basis.",
   "main": "scripts.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildDocSite": "documentation build scripts.js -f html -o docs"
   },
   "keywords": [
     "uberflip",
