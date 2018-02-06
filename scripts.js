@@ -504,3 +504,31 @@ exports.helpfulClasses = function() {
 	Hubs.Events.on('load', detectAndAddClass);
 	Hubs.Events.on('pageChange', detectAndAddClass);
 };
+
+
+/**
+ * Locks the reco engine panel to the bottom of the provided target, but moves it to the top of the screen
+ * when the target is out of view. 
+ * 
+ * @param {Selector} target 
+ */
+export function recoEnginePositioning(target) {
+	const reposition = function(target) {
+		try {
+			const $reco = $('.reco-panel');
+			const bottomOfTarget = $(target).offset().top + $(target).height();
+			const calculatedPosition = bottomOfTarget - $(window).scrollTop();
+			const desiredPosition = calculatedPosition > 0 ? calculatedPosition : 0;
+			$reco.css('top', desiredPosition);
+		} catch (err) {
+			console.warn('recoEnginePositioning() has failed - the error thrown was:');
+			console.error(err);
+			console.warn('The target used was:' + target);
+		}
+	}.bind($('.reco-panel'), target);
+
+	Hubs.Events.on('scroll', reposition);
+	Hubs.Events.on('load', reposition);
+	Hubs.Events.on('pageChange', reposition);
+	Hubs.Events.on('resize', reposition);
+};
