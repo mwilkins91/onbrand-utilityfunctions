@@ -431,6 +431,10 @@ exports.doIfTagRegex = function doIfTagRegex(
   }
 };
 
+/**
+ * Logs an error to the console (does not THROW an error)
+ * when we're in dev mode but there is no query string
+ */
 exports.noQueryStringSafeguard = function () {
   if (
     /localhost:3000/gi.test(window.location.host) &&
@@ -465,7 +469,7 @@ exports.helpfulClasses = function () {
   /* An array to keep track of what content types are used
    * (ensures we are dynamic, no hardcoded types)
    */
-  const typeArray = [];
+  const typeArray = ['sales-stream', 'marketing-stream'];
 
   /**
    * Removes all known type classes from the body, then adds whichever
@@ -476,6 +480,8 @@ exports.helpfulClasses = function () {
     typeArray.forEach(type => $('body').removeClass(type));
 
     const $class = $('#page-type-identifier').attr('data-item-type');
+    const $pageIdentifier = $('#hubs-container > div:eq(0)').attr('data-collection-type');
+
     if ($class) {
       $('body').addClass($class);
       if (!typeArray.includes($class)) {
@@ -486,11 +492,19 @@ exports.helpfulClasses = function () {
     if (!$('body').hasClass('webpackBuild')) {
       $('body').addClass('webpackBuild');
     }
+
+
+    if ($pageIdentifier === 'targeted') {
+      $('body').addClass('sales-stream');
+    } else if ($pageIdentifier === 'custom') {
+      $('body').addClass('marketing-stream');
+    }
   }
 
   // Event listeners
-  Hubs.Events.on('load', detectAndAddClass);
-  Hubs.Events.on('pageChange', detectAndAddClass);
+  Hubs.Events
+    .on('load', detectAndAddClass)
+    .on('pageChange', detectAndAddClass);
 };
 
 /**
@@ -499,7 +513,7 @@ exports.helpfulClasses = function () {
  *
  * @param {Selector} target
  */
-export function recoEnginePositioning(targetSel) {
+exports.recoEnginePositioning = function (targetSel) {
   const reposition = function (target) {
     try {
       const $reco = $('.reco-panel');
@@ -518,4 +532,210 @@ export function recoEnginePositioning(targetSel) {
   Hubs.Events.on('load', reposition);
   Hubs.Events.on('pageChange', reposition);
   Hubs.Events.on('resize', reposition);
+};
+
+/**
+ * Attempts to guess what buffer is needed for cta/addthis fix to
+ * look correct. TODO: refactor to return immediately if override is provided
+ * @param {Number} buffer
+ */
+function getTopNavBuffer(buffer) {
+  const $injectedHeader = $('#injected-header');
+  const $topNav = $('.top-nav');
+  let topNavBuffer;
+  let injectedHeaderHeight;
+  let topNavHeight;
+
+  // we need to add a buffer for any fixed or absolute content:
+
+  // Check if the injected header is position fixed, if it is grab its height
+  if ($injectedHeader.css('position') === 'fixed') {
+    injectedHeaderHeight = $injectedHeader.outerHeight(true);
+  } else if ($injectedHeader.height() === 0) {
+  // If the injected header is not fixed, check if it has fixed children, and if so get their heigh
+    injectedHeaderHeight = $('#injected-header>*').outerHeight(true);
+  } else {
+    // if the injected header is relative/static then no buffer is needed!
+    injectedHeaderHeight = 0;
+  }
+
+
+  // If the top nav is fixed, grab its heigh to add to our buffer
+  if ($topNav.css('position') === 'fixed') {
+    topNavHeight = $topNav.outerHeight(true);
+  } else {
+    // otherwise, no buffer needed
+    topNavHeight = 0;
+  }
+
+  // if the user didn't provide an override buffer, lets use ours
+  if (!buffer) {
+    topNavBuffer = injectedHeaderHeight + topNavHeight;
+  } else {
+    // if they did, use theirs
+    topNavBuffer = buffer;
+  }
+
+  return topNavBuffer;
 }
+
+/**
+ * This will keep side ctas within the bounds of an article
+ *
+ * @param {Number} buffer
+ */
+exports.sideCtaFix = function (buffer) {
+  // This will do its best to guess the buffer, if its off override with parameter
+  const topNavBuffer = getTopNavBuffer(buffer);
+
+
+  if ($(window).width() > 1351 && $('.entry-wrapper').length) {
+    const scrollTop = $(window).scrollTop();
+    const cta = $('.cta-item-container .cta');
+    if (cta.length > 0) {
+      const ctaHeight = cta.height();
+      const topLimit = $('.level-three').eq(0).offset().top;
+      const bottomLimit = $('.level-three').eq(0).offset().top + $('.level-three').height();
+      // initial position
+      cta.css('top', topLimit - scrollTop);
+
+      // if cta hits the top of the article
+      if (scrollTop + topNavBuffer > topLimit) {
+        cta.css('top', topNavBuffer);
+      }
+
+      // if it hits the bottom
+      if (scrollTop + topNavBuffer + ctaHeight > bottomLimit) {
+        cta.css('top', bottomLimit - ctaHeight - scrollTop);
+      }
+    }
+  }
+};
+
+/**
+ * This will keep addthis within the bounds of an article
+ *
+ * @param {Number} buffer
+ */
+exports.addThisFix = function (buffer) {
+  // This will do its best to guess the buffer, if its off override with parameter
+  const topNavBuffer = getTopNavBuffer(buffer);
+
+  if ($(window).width() > 980) {
+    const scrollTop = $(window).scrollTop();
+    const cta = $('.addthis_toolbox');
+    if (cta.length > 0) {
+      const ctaHeight = cta.height();
+      const topLimit = $('.level-three').eq(0).offset().top;
+      const bottomLimit = $('.level-three').eq(0).offset().top + $('.level-three').height();
+      // initial position
+      cta.css('top', topLimit - scrollTop);
+
+      // if cta hits the top of the article
+      if (scrollTop + topNavBuffer > topLimit) {
+        cta.css('top', topNavBuffer);
+      }
+
+      // if it hits the bottom
+      if (scrollTop + topNavBuffer + ctaHeight > bottomLimit) {
+        cta.css('top', bottomLimit - ctaHeight - scrollTop);
+      }
+    }
+  }
+};
+
+
+/**
+ *  Remove .touch on touchscreen laptops
+ */
+exports.removeTouchForLaptops = function () {
+  const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
+  if (!isMobileDevice) $('html').removeClass('touch');
+};
+
+/**
+ * Legacy: Michael Imperial Function... purpose unknown.
+ */
+exports.overrideHubFuctions = function () {
+  Hubs.Search.prototype.updateOverlaySize = function () {};
+};
+
+
+/**
+ * Legacy: Old Michael Imperial utility function, for use with legacy events
+ * @param {String} url
+ */
+function extractDomain(url) {
+  let domain;
+  // find & remove protocol (http, ftp, etc.) and get domain
+  if (url.indexOf('://') > -1) {
+    domain = url.split('/')[2];
+  } else {
+    domain = url.split('/')[0];
+  }
+  // find & remove port number
+  domain = domain.split(':')[0];
+  return domain;
+}
+
+/**
+ * Legacy: Old Michael Imperial event system
+ */
+exports.legacyEvents = function () {
+// Build Object of Ajax Names/URL Endpoints
+  const ufAjaxEndpoints = Hubs.Config.serverUrl;
+  jQuery.each(ufAjaxEndpoints, (key, value) => {
+    if (value.indexOf('/hubsFront/') === -1) {
+      delete ufAjaxEndpoints[key];
+    }
+  });
+  // If Uf-Events doesnt' exist already create
+  if (!window.ufEvents) {
+    window.ufEvents = [];
+    // Create event for every UF end-point
+    jQuery.each(ufAjaxEndpoints, (key, value) => {
+      const eventUrl = value;
+      const eventName = eventUrl.replace('/hubsFront/ajax_', '').replace('hubsFront/', '').replace('/', '');
+      jQuery(document).on('ajaxSuccess', function (event, xhr, settings) {
+        if (settings.url.indexOf(eventUrl) >= 0) {
+          const ufEvent = new Event(eventName);
+          $(this).trigger(ufEvent);
+          console.log('%c Event Dispatched: ', 'background: #0058ce; color: #FFF;padding:5px;', eventName);
+        }
+      });
+      window.ufEvents.push(eventName);
+    });
+    // Create onPageChange event
+    jQuery(document).on('ajaxSuccess', function (event, xhr, settings) {
+      if (settings.type === 'GET' && settings.url.indexOf('/hubsFront/') === -1 && settings.url.indexOf(extractDomain(Hubs.Config.hubBaseUrl)) > -1) {
+        const ufEvent = new Event('pageChange');
+        jQuery(this).trigger(ufEvent);
+        console.log('%c Event Dispatched: ', 'background: #0058ce; color: #FFF;padding:5px;', 'pageChange:', window.location.href);
+      }
+    });
+
+    // Console Log: List all UF Events
+    window.ufEvents.push('pageChange');
+    console.log('%cUF Events Available:', 'background: #ce0058; color: #FFF;padding:5px;line-height:3;font-weight:bold;', window.ufEvents.toString());
+  }
+};
+
+/**
+ * Legacy: Old Michael Imperial embed fix
+ *
+ *
+ */
+exports.legacyTileFix = function () {
+  /**
+ *  fix embed tile errors and kill process
+ */
+
+  (function () {
+    if (window.location.href.indexOf('?embedtile') !== -1 || window.location.href.indexOf('embed_cta') !== -1) {
+      $('.tile.single').css({
+        position: 'fixed', top: 0, left: 0, zIndex: 2147483647, opacity: 1, transform: 'none', 'animation-name': 'initial', visibility: 'visible', 'animation-duration': 0,
+      });
+      throw new Error('Embed Tile Fix triggered');
+    }
+  }());
+};

@@ -6,6 +6,7 @@ class Banner {
       imageUrl: '#',
     };
     this.options = Object.assign({}, defaultOptions, userOptions);
+    console.log('This is a work in progress, currently it cannot be used.');
   }
 }
 
