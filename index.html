@@ -185,9 +185,9 @@
               
                 
                 <li><a
-                  href='#legacytilefix'
+                  href='#legacyembedtilefix'
                   class="">
-                  legacyTileFix
+                  legacyEmbedTileFix
                   
                 </a>
                 
@@ -1123,7 +1123,7 @@ but moves it to the top of the screen when the target is out of view.</p>
   </div>
   
 
-  <p>Remove .touch on touchscreen laptops</p>
+  <p>Legacy: Remove .touch on touchscreen laptops</p>
 
 
   <div class='pre p1 fill-light mt0'>removeTouchForLaptops()</div>
@@ -1256,8 +1256,8 @@ but moves it to the top of the screen when the target is out of view.</p>
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='legacytilefix'>
-      legacyTileFix
+    <h3 class='fl m0' id='legacyembedtilefix'>
+      legacyEmbedTileFix
     </h3>
     
     
@@ -1267,7 +1267,7 @@ but moves it to the top of the screen when the target is out of view.</p>
   <p>Legacy: Old Michael Imperial embed fix</p>
 
 
-  <div class='pre p1 fill-light mt0'>legacyTileFix()</div>
+  <div class='pre p1 fill-light mt0'>legacyEmbedTileFix()</div>
   
   
 
@@ -1531,7 +1531,7 @@ not, adds it to the array.</p>
 look correct. TODO: refactor to return immediately if override is provided</p>
 
 
-  <div class='pre p1 fill-light mt0'>getTopNavBuffer(buffer: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>)</div>
+  <div class='pre p1 fill-light mt0'>getTopNavBuffer(buffer: any, bufferOverride: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></div>
   
   
 
@@ -1548,7 +1548,15 @@ look correct. TODO: refactor to return immediately if override is provided</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>buffer</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>)</code>
+            <span class='code bold'>buffer</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>bufferOverride</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>)</code>
 	    
           </div>
           
@@ -1559,6 +1567,14 @@ look correct. TODO: refactor to return immediately if override is provided</p>
 
   
 
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>:
+        estimated buffer
+
+      
+    
   
 
   
@@ -1591,7 +1607,7 @@ look correct. TODO: refactor to return immediately if override is provided</p>
   <p>Legacy: Old Michael Imperial utility function, for use with legacy events</p>
 
 
-  <div class='pre p1 fill-light mt0'>extractDomain(url: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</div>
+  <div class='pre p1 fill-light mt0'>extractDomain(url: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></div>
   
   
 
@@ -1619,6 +1635,14 @@ look correct. TODO: refactor to return immediately if override is provided</p>
 
   
 
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></code>:
+        domain
+
+      
+    
   
 
   

@@ -537,7 +537,8 @@ exports.recoEnginePositioning = function (targetSel) {
 /**
  * Attempts to guess what buffer is needed for cta/addthis fix to
  * look correct. TODO: refactor to return immediately if override is provided
- * @param {Number} buffer
+ * @param {Number} bufferOverride
+ * @returns {Number} estimated buffer
  */
 function getTopNavBuffer(buffer) {
   const $injectedHeader = $('#injected-header');
@@ -646,7 +647,7 @@ exports.addThisFix = function (buffer) {
 
 
 /**
- *  Remove .touch on touchscreen laptops
+ * Legacy: Remove .touch on touchscreen laptops
  */
 exports.removeTouchForLaptops = function () {
   const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
@@ -664,6 +665,7 @@ exports.overrideHubFuctions = function () {
 /**
  * Legacy: Old Michael Imperial utility function, for use with legacy events
  * @param {String} url
+ * @returns {String} domain
  */
 function extractDomain(url) {
   let domain;
@@ -725,7 +727,7 @@ exports.legacyEvents = function () {
  *
  *
  */
-exports.legacyTileFix = function () {
+exports.legacyEmbedTileFix = function () {
   /**
  *  fix embed tile errors and kill process
  */
