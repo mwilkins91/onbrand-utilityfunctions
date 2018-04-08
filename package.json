@@ -19,6 +19,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-1": "^6.24.1",
     "cssnano": "^3.10.0",
+    "documentation": "^6.1.0",
     "node-color-logger": "^1.0.2",
     "postcss-calc": "^6.0.1",
     "uglifyjs-webpack-plugin": "^1.2.4",
