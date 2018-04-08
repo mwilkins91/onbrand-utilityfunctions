@@ -1,0 +1,7 @@
+.babelrc
+webpack.config
+index.html
+docs/*
+assets/*
+modules/*
+index.js
