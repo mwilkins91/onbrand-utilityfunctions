@@ -23,6 +23,246 @@
           <div id='toc'>
             <ul class='list-reset h5 py1-ul'>
               
+                
+                <li><a
+                  href='#doiftag'
+                  class="">
+                  doIfTag
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#fixsharewidgetimproved'
+                  class="">
+                  fixShareWidgetImproved
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#blockctafix'
+                  class="">
+                  blockCtaFix
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#fadeoutitem'
+                  class="">
+                  fadeOutItem
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#descriptionslideup'
+                  class="">
+                  descriptionSlideUp
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#removeclasses'
+                  class="">
+                  removeClasses
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#doiftagregex'
+                  class="">
+                  doIfTagRegex
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#noquerystringsafeguard'
+                  class="">
+                  noQueryStringSafeguard
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#getstreamclass'
+                  class="">
+                  getStreamClass
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#helpfulclasses'
+                  class="">
+                  helpfulClasses
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#recoenginepositioning'
+                  class="">
+                  recoEnginePositioning
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#sidectafix'
+                  class="">
+                  sideCtaFix
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#addthisfix'
+                  class="">
+                  addThisFix
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#removetouchforlaptops'
+                  class="">
+                  removeTouchForLaptops
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#overridehubfuctions'
+                  class="">
+                  overrideHubFuctions
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#legacyevents'
+                  class="">
+                  legacyEvents
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#legacytilefix'
+                  class="">
+                  legacyTileFix
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#internallink'
+                  class="">
+                  internalLink
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#relativelinks'
+                  class="">
+                  relativeLinks
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#on'
+                  class="">
+                  on
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#detectandaddclass'
+                  class="">
+                  detectAndAddClass
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#gettopnavbuffer'
+                  class="">
+                  getTopNavBuffer
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#extractdomain'
+                  class="">
+                  extractDomain
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#error'
+                  class="">
+                  Error
+                  
+                </a>
+                
+                </li>
+              
             </ul>
           </div>
           <div class='mt1 h6 quiet'>
@@ -31,6 +271,1415 @@
         </div>
       </div>
       <div id='split-right' class='relative overflow-auto height-viewport-100'>
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='doiftag'>
+      doIfTag
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Loop over each tile, and if the tag specified (1st param) is
+present, execute yesTagFn (2nd param) if the tag is not present,
+execute noTagFn (3rd param). In both callbacks,
+<strong>this</strong> reffers to the tile currently being checked</p>
+
+
+  <div class='pre p1 fill-light mt0'>doIfTag(filterBy: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, yesTagFn: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>, noTagFn: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>, not: any, OPTIONAL: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>filterBy</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    --> The tag to look for
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>yesTagFn</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>
+            = <code>function(){}</code>)</code>
+	    --> The function to run if a tile has the desired tag.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>noTagFn</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>
+            = <code>function(){}</code>)</code>
+	    --> The function to run if a tile
+does NOT have the desired tag.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>not</span> <code class='quiet'>(any
+            = <code>&#39;&#39;</code>)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>OPTIONAL</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    : A css class to ignore, and to add after the tile has been processed.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></code>:
+        --> returns true if the front end tags are enabled, otherwise returns false and logs an error.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='fixsharewidgetimproved'>
+      fixShareWidgetImproved
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Take the hub share window, rip it out, and make our own.
+On page change, replace our new share window with the appropriate one
+for that page. Applies event listeners for load and page change,
+simply call near the begining of your code.</p>
+
+
+  <div class='pre p1 fill-light mt0'>fixShareWidgetImproved(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a></code>:
+        --> The function that updates on page change.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='blockctafix'>
+      blockCtaFix
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This function is to be called on scroll, and will keep the block CTAs
+within the bounds of the article they are supposed to be blocking
+(preventing them from overlapping the injected header and footer).</p>
+
+
+  <div class='pre p1 fill-light mt0'>blockCtaFix()</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='fadeoutitem'>
+      fadeOutItem
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>When called on scroll, this function will fade out
+the next-item-flyout before it can overlap with the injected-footer</p>
+
+
+  <div class='pre p1 fill-light mt0'>fadeOutItem()</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='descriptionslideup'>
+      descriptionSlideUp
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Simply adds the css required to have tile descriptions slide up on hover</p>
+
+
+  <div class='pre p1 fill-light mt0'>descriptionSlideUp()</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='removeclasses'>
+      removeClasses
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Recursivley remove all the standard classes from our topnav clone,
+add some handly classes in the prcoess. Called as the callback to
+a jQuery .each(). EX $(parent).children().each(removeClasses)</p>
+
+
+  <div class='pre p1 fill-light mt0'>removeClasses(i: index, el: <a href="https://developer.mozilla.org/docs/Web/API/Element">element</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>i</span> <code class='quiet'>(index)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>el</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/API/Element">element</a>)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='doiftagregex'>
+      doIfTagRegex
+    </h3>
+    
+    
+  </div>
+  
+
+  
+
+  <div class='pre p1 fill-light mt0'>doIfTagRegex(filterBy: any, yesTagFn: any, noTagFn: any, not: any, OPTIONAL: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>, OPTIONAL: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>, OPTIONAL: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>filterBy</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>yesTagFn</span> <code class='quiet'>(any
+            = <code>function(){}</code>)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>noTagFn</span> <code class='quiet'>(any
+            = <code>function(){}</code>)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>not</span> <code class='quiet'>(any
+            = <code>&#39;&#39;</code>)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>OPTIONAL</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
+	    : A function to execute if the tile has
+the tag, THIS = the tile inside the function.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>OPTIONAL</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
+	    : A function to execute if the tile
+DOES NOT have the tag, THIS = the tile inside the function.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>OPTIONAL</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    : A css class to ignore, and to add after the tile has been processed.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='noquerystringsafeguard'>
+      noQueryStringSafeguard
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Logs an error to the console (does not THROW an error)
+when we're in dev mode but there is no query string</p>
+
+
+  <div class='pre p1 fill-light mt0'>noQueryStringSafeguard()</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='getstreamclass'>
+      getStreamClass
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Returns the stream class for that page.</p>
+
+
+  <div class='pre p1 fill-light mt0'>getStreamClass(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></code>:
+        'stream-xxxxx' or false, if the page has no stream.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='helpfulclasses'>
+      helpfulClasses
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Adds helpful body classes based on content type to make styling easier.</p>
+
+
+  <div class='pre p1 fill-light mt0'>helpfulClasses()</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='recoenginepositioning'>
+      recoEnginePositioning
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Locks the reco engine panel to the bottom of the provided target,
+but moves it to the top of the screen when the target is out of view.</p>
+
+
+  <div class='pre p1 fill-light mt0'>recoEnginePositioning(targetSel: any, target: Selector)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>targetSel</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>target</span> <code class='quiet'>(Selector)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='sidectafix'>
+      sideCtaFix
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This will keep side ctas within the bounds of an article</p>
+
+
+  <div class='pre p1 fill-light mt0'>sideCtaFix(buffer: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>buffer</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='addthisfix'>
+      addThisFix
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This will keep addthis within the bounds of an article</p>
+
+
+  <div class='pre p1 fill-light mt0'>addThisFix(buffer: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>buffer</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='removetouchforlaptops'>
+      removeTouchForLaptops
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Remove .touch on touchscreen laptops</p>
+
+
+  <div class='pre p1 fill-light mt0'>removeTouchForLaptops()</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='overridehubfuctions'>
+      overrideHubFuctions
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Legacy: Michael Imperial Function... purpose unknown.</p>
+
+
+  <div class='pre p1 fill-light mt0'>overrideHubFuctions()</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='legacyevents'>
+      legacyEvents
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Legacy: Old Michael Imperial event system</p>
+
+
+  <div class='pre p1 fill-light mt0'>legacyEvents()</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='legacytilefix'>
+      legacyTileFix
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Legacy: Old Michael Imperial embed fix</p>
+
+
+  <div class='pre p1 fill-light mt0'>legacyTileFix()</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='internallink'>
+      internalLink
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Utility Functions</p>
+
+
+  <div class='pre p1 fill-light mt0'>internalLink</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>e</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='relativelinks'>
+      relativeLinks
+    </h3>
+    
+    
+  </div>
+  
+
+  
+
+  <div class='pre p1 fill-light mt0'>relativeLinks</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>url</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    the url to replace with a relative path
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='on'>
+      on
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Local Development Events</p>
+
+
+  <div class='pre p1 fill-light mt0'>on</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='detectandaddclass'>
+      detectAndAddClass
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Removes all known type classes from the body, then adds whichever
+is relevent to that page. Checks to see if that class is known, and if
+not, adds it to the array.</p>
+
+
+  <div class='pre p1 fill-light mt0'>detectAndAddClass()</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='gettopnavbuffer'>
+      getTopNavBuffer
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Attempts to guess what buffer is needed for cta/addthis fix to
+look correct. TODO: refactor to return immediately if override is provided</p>
+
+
+  <div class='pre p1 fill-light mt0'>getTopNavBuffer(buffer: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>buffer</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='extractdomain'>
+      extractDomain
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Legacy: Old Michael Imperial utility function, for use with legacy events</p>
+
+
+  <div class='pre p1 fill-light mt0'>extractDomain(url: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>url</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='error'>
+      Error
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>fix embed tile errors and kill process</p>
+
+
+  <div class='pre p1 fill-light mt0'>Error</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
         
       </div>
     </div>
