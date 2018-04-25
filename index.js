@@ -149,23 +149,31 @@ exports.fixShareWidgetImproved = function () {
     if ($('.meta-inner .share-container').length) {
       $('.right-side-btns .share-hub').remove();
       $('.right-side-btns .share-container').remove();
-      $('.meta-inner .share-container').insertAfter('.insertFlag--share');
+      $('.meta-inner .share-container').insertAfter('.insertFlag--share').find('a.hooked')
+					.removeClass('hooked');
+				Hubs.App.prototype.overrideLinks();
     } else if (
       $('.share-item.type-collection').length &&
       !$('body').hasClass('hub-page')
     ) {
       $('.right-side-btns .share-hub').remove();
       $('.right-side-btns .share-container').remove();
-      $('#hubs-container .page-aligner>.share-container').insertAfter('.insertFlag--share');
+      $('#hubs-container .page-aligner>.share-container').insertAfter('.insertFlag--share').find('a.hooked')
+					.removeClass('hooked');
+				Hubs.App.prototype.overrideLinks();
     } else {
       $('.right-side-btns .share-hub').remove();
       $('.right-side-btns .share-container').remove();
       if ($('#share-main-hub').length) {
         $('#share-main-hub')
           .clone()
-          .insertAfter('.insertFlag--share');
+          .insertAfter('.insertFlag--share').find('a.hooked')
+					.removeClass('hooked');
+				Hubs.App.prototype.overrideLinks();
       } else {
-        $shareMain.clone().insertAfter('.insertFlag--share');
+        $shareMain.clone().insertAfter('.insertFlag--share').find('a.hooked')
+					.removeClass('hooked');
+				Hubs.App.prototype.overrideLinks();
       }
     }
   };
