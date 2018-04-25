@@ -150,8 +150,8 @@ exports.fixShareWidgetImproved = function () {
       $('.right-side-btns .share-hub').remove();
       $('.right-side-btns .share-container').remove();
       $('.meta-inner .share-container').insertAfter('.insertFlag--share').find('a.hooked')
-					.removeClass('hooked');
-				Hubs.App.prototype.overrideLinks();
+        .removeClass('hooked');
+      Hubs.App.prototype.overrideLinks();
     } else if (
       $('.share-item.type-collection').length &&
       !$('body').hasClass('hub-page')
@@ -159,8 +159,8 @@ exports.fixShareWidgetImproved = function () {
       $('.right-side-btns .share-hub').remove();
       $('.right-side-btns .share-container').remove();
       $('#hubs-container .page-aligner>.share-container').insertAfter('.insertFlag--share').find('a.hooked')
-					.removeClass('hooked');
-				Hubs.App.prototype.overrideLinks();
+        .removeClass('hooked');
+      Hubs.App.prototype.overrideLinks();
     } else {
       $('.right-side-btns .share-hub').remove();
       $('.right-side-btns .share-container').remove();
@@ -168,26 +168,15 @@ exports.fixShareWidgetImproved = function () {
         $('#share-main-hub')
           .clone()
           .insertAfter('.insertFlag--share').find('a.hooked')
-					.removeClass('hooked');
-				Hubs.App.prototype.overrideLinks();
+          .removeClass('hooked');
+        Hubs.App.prototype.overrideLinks();
       } else {
         $shareMain.clone().insertAfter('.insertFlag--share').find('a.hooked')
-					.removeClass('hooked');
-				Hubs.App.prototype.overrideLinks();
+          .removeClass('hooked');
+        Hubs.App.prototype.overrideLinks();
       }
     }
   };
-  // Make sure social still opens in popup
-  const links = document.querySelectorAll('#share-main-hub li a');
-  links.forEach(link =>
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
-      window.open(
-        this.href,
-        'windowName',
-        'width=540, height=433, left=24, top=24, scrollbars, resizable'
-      );
-    }));
   Hubs.Events.on('load', update);
   Hubs.Events.on('pageChange', update);
   return update;
