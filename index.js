@@ -71,7 +71,7 @@ exports.doIfTag = function (
  */
 exports.fixShareWidgetImproved = function () {
   $('head').append(`
-  <style id="shareWidgetFix">
+    <style id="shareWidgetFix">
     .relativeDiv {
       position: relative;
       float: right;
@@ -151,7 +151,7 @@ exports.fixShareWidgetImproved = function () {
       $('.right-side-btns .share-container').remove();
       $('.meta-inner .share-container').insertAfter('.insertFlag--share').find('a.hooked')
         .removeClass('hooked');
-      Hubs.App.prototype.overrideLinks();
+      Hubs.appInstance.overrideLinks();
     } else if (
       $('.share-item.type-collection').length &&
       !$('body').hasClass('hub-page')
@@ -160,7 +160,7 @@ exports.fixShareWidgetImproved = function () {
       $('.right-side-btns .share-container').remove();
       $('#hubs-container .page-aligner>.share-container').insertAfter('.insertFlag--share').find('a.hooked')
         .removeClass('hooked');
-      Hubs.App.prototype.overrideLinks();
+      Hubs.appInstance.overrideLinks();
     } else {
       $('.right-side-btns .share-hub').remove();
       $('.right-side-btns .share-container').remove();
@@ -169,11 +169,11 @@ exports.fixShareWidgetImproved = function () {
           .clone()
           .insertAfter('.insertFlag--share').find('a.hooked')
           .removeClass('hooked');
-        Hubs.App.prototype.overrideLinks();
+        Hubs.appInstance.overrideLinks();
       } else {
         $shareMain.clone().insertAfter('.insertFlag--share').find('a.hooked')
           .removeClass('hooked');
-        Hubs.App.prototype.overrideLinks();
+        Hubs.appInstance.overrideLinks();
       }
     }
   };
