@@ -1,6 +1,6 @@
 {
   "name": "onbrandutilityfunctions",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "A collection of useful reusable functions for working with uberflip hubs, to be included on an as-needed basis.",
   "main": "build/onbrandUtilityFunctions.bundle.js",
   "scripts": {
