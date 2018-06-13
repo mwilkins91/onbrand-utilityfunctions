@@ -445,21 +445,6 @@ exports.noQueryStringSafeguard = function () {
 };
 
 /**
- * Returns the stream class for that page.
- *
- * @returns {String} 'stream-xxxxx' or false, if the page has no stream.
- */
-exports.getStreamClass = function () {
-  const classes = $('body').attr('class');
-  const classArray = classes.split(' ');
-  let streamClass;
-  classArray.forEach((currentClass) => {
-    if (/stream-/gi.test(currentClass)) streamClass = currentClass;
-  });
-  return streamClass || false;
-};
-
-/**
  * Adds helpful body classes based on content type to make styling easier.
  */
 exports.helpfulClasses = function () {
