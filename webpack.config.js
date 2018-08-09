@@ -93,38 +93,68 @@ const images = {
 
 
 // The Final Module Export
-module.exports = () => ({
-  context: resolve(__dirname),
-  entry: './index.js',
-  output: {
-    path: resolve(__dirname, 'build'),
-    filename: 'onbrandUtilityFunctions.bundle.js',
-    library: 'onbrandUtilityFunctions',
-    libraryTarget: 'umd',
-    umdNamedDefine: true,
+module.exports = [
+  {
+    /**
+     * Core utility modules build
+     */
+    context: resolve(__dirname),
+    entry: './index.js',
+    output: {
+      path: resolve(__dirname, 'build'),
+      filename: 'onbrandUtilityFunctions.bundle.js',
+      library: 'onbrandUtilityFunctions',
+      libraryTarget: 'umd',
+      umdNamedDefine: true,
+    },
+    mode: 'production',
+    devtool: 'source-map',
+    module: {
+      rules: [javascript, styles, html, images, fonts],
+    },
+    plugins: [
+      new WebpackBuildNotifierPlugin({
+        title: 'MarkBot',
+        suppressWarning: true,
+        suppressSuccess: false,
+        messageFormatter(obj, string) {
+          logger.changeColorTo('white').log(obj, string);
+          return `Hey Onbrander! Wepack hit an error in ${string}. Check the terminal for details!`;
+        },
+      }),
+      new UglifyJSPlugin({
+        sourceMap: true,
+      }),
+    ],
+    watch: false,
+    stats: {
+      children: false,
+    },
   },
-  mode: 'production',
-  devtool: 'source-map',
-  module: {
-    rules: [javascript, styles, html, images, fonts],
+  {
+    /**
+     * Conditional-babel build
+     */
+    context: resolve(__dirname),
+    entry: './conditional-babel-polyfill.js',
+    output: {
+      path: resolve(__dirname, 'build'),
+      filename: 'conditional-babel-polyfill.bundle.js',
+      library: 'conditional-babel-polyfill',
+      libraryTarget: 'umd',
+      umdNamedDefine: true,
+    },
+    mode: 'production',
+    devtool: 'source-map',
+    module: {
+      rules: [javascript],
+    },
+    plugins: [
+      new UglifyJSPlugin({
+        sourceMap: true,
+      }),
+    ],
+    watch: false,
   },
-  plugins: [
-    new WebpackBuildNotifierPlugin({
-      title: 'MarkBot',
-      suppressWarning: true,
-      suppressSuccess: false,
-      messageFormatter(obj, string) {
-        logger.changeColorTo('white').log(obj, string);
-        return `Hey Onbrander! Wepack hit an error in ${string}. Check the terminal for details!`;
-      },
-    }),
-    new UglifyJSPlugin({
-      sourceMap: true,
-    }),
-  ],
-  watch: false,
-  stats: {
-    children: false,
-  },
-});
+];
 
