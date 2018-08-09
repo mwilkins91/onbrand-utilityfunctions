@@ -5,3 +5,4 @@ docs/*
 assets/*
 modules/*
 index.js
+conditional-babel-polyfill.js
