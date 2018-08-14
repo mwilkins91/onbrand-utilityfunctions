@@ -1,5 +1,16 @@
 exports.Banner = require('./modules/banner');
 
+
+const getBaseUrl = function () {
+  let baseUrl = 'http://localhost:3000/';
+
+  if (window.self.location.hostname === 'localhost') {
+    baseUrl = `${window.location.protocol}//${window.location.hostname}${window.location.port ? (`:${window.location.port}`) : ''}`;
+  }
+
+  return baseUrl;
+};
+
 /**
  * Loop over each tile, and if the tag specified (1st param) is
  * present, execute yesTagFn (2nd param) if the tag is not present,
@@ -326,19 +337,21 @@ exports.devMode = function (devOptions) {
    */
 
   if (!production) {
+    const baseUrl = getBaseUrl();
+
     // run right away to catch any early clickers out there...
     relativeLinks(devOptions.shortHubUrl);
-    Hubs.Config.hubBaseUrl = 'http://localhost:3000/';
+    Hubs.Config.hubBaseUrl = baseUrl;
 
     // run on load to catch any links added via scripts or anything
     Hubs.Events.on('load', () => {
       relativeLinks(devOptions.shortHubUrl);
-      Hubs.Config.hubBaseUrl = 'http://localhost:3000/';
+      Hubs.Config.hubBaseUrl = baseUrl;
     });
     // run on page change to get links on different pages
     Hubs.Events.on('pageChange', () => {
       relativeLinks(devOptions.shortHubUrl);
-      Hubs.Config.hubBaseUrl = 'http://localhost:3000/';
+      Hubs.Config.hubBaseUrl = baseUrl;
     });
     // get all the links on extra tiles added in
     Hubs.Events.on('itemsLoaded', () => {
@@ -433,8 +446,9 @@ exports.doIfTagRegex = function doIfTagRegex(
  * when we're in dev mode but there is no query string
  */
 exports.noQueryStringSafeguard = function () {
+  const baseUrl = getBaseUrl();
   if (
-    /localhost:3000/gi.test(window.location.host) &&
+    new RegExp(baseUrl, 'gi').test(window.location.host) &&
     !(
       /\?onbrand/gi.test(window.location.href) ||
       /&onbrand/gi.test(window.location.href)
