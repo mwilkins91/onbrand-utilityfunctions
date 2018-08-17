@@ -156,8 +156,9 @@ exports.fixShareWidgetImproved = function () {
   $('.search-container').insertAfter('.insertFlag--search');
   // This function will update the share widget for different pages
   const $shareMain = $('#share-main-hub');
+  let updateShareThis = false;
   const update = function () {
-    window.updateShareThis = true;
+    updateShareThis = true;
     if ($('.meta-inner .share-container').length) {
       $('.right-side-btns .share-hub').remove();
       $('.right-side-btns .share-container').remove();
@@ -190,7 +191,7 @@ exports.fixShareWidgetImproved = function () {
     }
   };
   Hubs.Events.on('load', () => {
-    if (!window.updateShareThis) { update() }
+    if (!updateShareThis) { update() }
   });
   Hubs.Events.on('pageChange', update);
   return update;
