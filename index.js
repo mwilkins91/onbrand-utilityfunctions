@@ -146,10 +146,11 @@ exports.fixShareWidgetImproved = function () {
   // This function will update the share widget for different pages
   const $shareMain = $('#share-main-hub');
   const update = function () {
+    window.updateShareThis = true;
     if ($('.meta-inner .share-container').length) {
       $('.right-side-btns .share-hub').remove();
       $('.right-side-btns .share-container').remove();
-      $('.meta-inner .share-container').insertAfter('.insertFlag--share').find('a.hooked')
+      $('.meta-inner .share-container').insertAfter('.insertFlag--share').find('a.hooked').off()
         .removeClass('hooked');
       Hubs.appInstance.overrideLinks();
     } else if (
@@ -158,7 +159,7 @@ exports.fixShareWidgetImproved = function () {
     ) {
       $('.right-side-btns .share-hub').remove();
       $('.right-side-btns .share-container').remove();
-      $('#hubs-container .page-aligner>.share-container').insertAfter('.insertFlag--share').find('a.hooked')
+      $('#hubs-container .page-aligner>.share-container').insertAfter('.insertFlag--share').find('a.hooked').off()
         .removeClass('hooked');
       Hubs.appInstance.overrideLinks();
     } else {
@@ -168,7 +169,7 @@ exports.fixShareWidgetImproved = function () {
         $('#share-main-hub')
           .clone()
           .insertAfter('.insertFlag--share').find('a.hooked')
-          .removeClass('hooked');
+          .removeClass('hooked')
         Hubs.appInstance.overrideLinks();
       } else {
         $shareMain.clone().insertAfter('.insertFlag--share').find('a.hooked')
@@ -177,7 +178,9 @@ exports.fixShareWidgetImproved = function () {
       }
     }
   };
-  Hubs.Events.on('load', update);
+  Hubs.Events.on('load', () => {
+    if (!window.updateShareThis) { update() }
+  });
   Hubs.Events.on('pageChange', update);
   return update;
 };
