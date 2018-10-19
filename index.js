@@ -81,66 +81,106 @@ exports.doIfTag = function (
  * @returns {function} --> The function that updates on page change.
  */
 exports.fixShareWidgetImproved = function () {
+  // Gets the number of social icon links
+  const shareItems = document.querySelectorAll('#share-main-hub li a').length;
+  // The current standard number of share icons is 5
+  const maxShareItemLength = 5;
+  // Each icon takes up a left alignment of 125%
+  const shareItemWidth = 125;
+  // The width of the social icons on desktop/laptop
+  const largeSocialIconWidth = 55;
+  // The width of the social icons on tablet/mobile
+  const smallSocialIconWidth = 45;
+  // The left value in % if all social share icons are present for desktop (anything above 860px)
+  const desktopLeftAlignment = -450;
+  // The left value in % if all social share icons are present for laptop (between 720px and 860px)
+  let laptopLeftAlignment;
+  // The left value in % if all social share icons are present for table (anything lower than 720px)
+  let tabletLeftAlignment;
+  // Figures out the left alignment for the share hub
+  let shareHubLeftAlignment;
+  if (shareItems >= 3) {
+    shareHubLeftAlignment = (maxShareItemLength - shareItems) * shareItemWidth;
+    laptopLeftAlignment = -550;
+    tabletLeftAlignment = -465;
+  } else {
+    // If less than three icons, width remains fixed.
+    shareHubLeftAlignment = 290;
+    laptopLeftAlignment = -510;
+    tabletLeftAlignment = -520;
+  }
   $('head').append(`
-    <style id="shareWidgetFix">
-    .relativeDiv {
+  <style id="shareWidgetFix">
+  .relativeDiv {
       position: relative;
       float: right;
-    }
+  }
 
-    .relativeDiv.relativeDiv--search {
+  .relativeDiv.relativeDiv--search {
       float: left;
-    }
+  }
 
-    .relativeDiv--share:hover .share-hub {
-      display: block;
-    }
+  .relativeDiv--share:hover .share-hub {
+    display: block;
+  }
 
+  .share-hub,
+  .share-item {
+    margin: auto;
+  }
+
+  .search-drop-down {
+    position: absolute;
+  }
+
+  @media all and (min-width: 860px) {
     .share-hub,
     .share-item {
-      margin: auto;
-    }
-
-    .search-drop-down {
+      right: auto;
       position: absolute;
+      left: ${desktopLeftAlignment + shareHubLeftAlignment}% !important;
+      top: 51px !important;
     }
+    .share-hub,
+    .share-container .share-item  {
+      width: ${shareItems * largeSocialIconWidth}px !important; 
+    } 
+    .search-drop-down {
+      right: 0;
+      position: absolute;
+      left: -4% !important;
+      top: 55px !important;
+    }
+  }
 
-    @media all and (min-width: 860px) {
-      .share-hub,
-      .share-item {
-        right: auto;
-        position: absolute;
-        left: -450% !important;
-        top: 51px !important;
-      }
-      .search-drop-down {
-        right: 0;
-        position: absolute;
-        left: -4% !important;
-        top: 55px !important;
-      }
+  @media all and (max-width: 860px) {
+    .share-hub,
+    .share-item {
+      right: auto;
+      position: absolute;
+      left: ${laptopLeftAlignment + shareHubLeftAlignment}% !important;
+      top: 45px !important;
     }
+    .share-hub,
+    .share-container .share-item  {
+      width: ${shareItems * largeSocialIconWidth}px !important; 
+    } 
+  }
 
-    @media all and (max-width: 860px) {
-      .share-hub,
-      .share-item {
-        right: auto;
-        position: absolute;
-        left: -576% !important;
-        top: 45px !important;
-      }
+  @media all and (max-width: 720px) {
+    .share-hub,
+    .share-item {
+      right: auto;
+      position: absolute;
+      left: ${tabletLeftAlignment + shareHubLeftAlignment}% !important;
+      top: 45px !important;
     }
-
-    @media all and (max-width: 720px) {
-      .share-hub,
-      .share-item {
-        right: auto;
-        position: absolute;
-        left: -465% !important;
-        top: 45px !important;
-      }
-    }
-  </style>`);
+    .share-hub,
+    .share-container .share-item {
+      width: ${shareItems * smallSocialIconWidth}px !important; 
+    } 
+  }
+</style>`);
   // rip out share window, put inside of relative div (in the same place)
   // create div to house elements
   $('.right-side-btns').prepend('<div class="relativeDiv relativeDiv--share"><div class="insertFlag--share"></div></div>');
@@ -156,6 +196,7 @@ exports.fixShareWidgetImproved = function () {
   $('.search-container').insertAfter('.insertFlag--search');
   // This function will update the share widget for different pages
   const $shareMain = $('#share-main-hub');
+  $shareMain.style
   let updateShareThis = false;
   const update = function () {
     updateShareThis = true;
