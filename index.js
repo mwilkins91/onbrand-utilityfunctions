@@ -235,7 +235,7 @@ exports.fixShareWidgetImproved = function () {
     if (!updateShareThis) { update() }
   });
   Hubs.Events.on('pageChange', update);
-  return update;
+    return update;
 };
 
 /**
